@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve --config webpack/webpack.config.js --env env=dev --open",
+    "build": "webpack --config webpack/webpack.config.js --env env=prod"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,10 @@
   "devDependencies": {
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "html-webpack-plugin": "^5.1.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
     "typescript": "^4.1.5"
   }
 }
