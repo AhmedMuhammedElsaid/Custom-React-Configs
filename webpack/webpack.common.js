@@ -1,41 +1,44 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
-  resolve:{
-    extensions: ['.js','.ts','.tsx','.jsx']
+  resolve: {
+    extensions: ['.js','.jsx','.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',   
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-    },
-    {test:"/\.(?:ico|gif|png|jpg|jpeg)$/i",
-    type:"asset/resource"
-  },
-  {
-    test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-    type: 'asset/inline',
-  }
-    ]
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
+    ],
   },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname,"..", 'build'),
+    path: path.resolve(__dirname, '..', './ build'),
+    filename: 'bundle.js',
   },
-  mode: 'development',
   plugins: [
-    new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html')
-    })
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '..', './src/index.html'),
+    }),
   ],
-};
+  stats: 'errors-only',
+}
